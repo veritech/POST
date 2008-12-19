@@ -8,17 +8,67 @@ package post;
 import java.io.*;
 import java.util.*;
 
-public class ProductCatalog implements Serializable
+public class ProductCatalog
 {
 	
+	//filename constant 
+	private final static String CATALOG_FILENAME = "catalog.ser";
+	
 	//Hash table to store unique products
-	private Hashtable <Integer, ProductSpec> catalog = new Hashtable();
+	private Hashtable <Integer, ProductSpec> catalog;
 
     public ProductCatalog() 
     {
+    	
+    	//If the catalog is empty load a new one from disk
+    	if( catalog == null ){
+    		this.load();
+    	}
+    	
+    	
 	}
 	
+	/*
+	*	Load the internal store from a file
+	*/
+	public void load(){
+		
+		try{
+			
+			FileInputStream fileIn = new FileInputStream( CATALOG_FILENAME );
+			
+			ObjectInputStream in = new ObjectInputStream( fileIn );
+			
+			catalog = (Hashtable<Integer,ProductSpec>) in.readObject();
+			
+		}
+		catch(Exception e ){
+			
+			System.out.println(e);
+			
+		}
+	}
 	
+	/*
+	*	Save the internal store to a file
+	*/
+	public void save(){
+		
+		try{
+			
+			FileOutputStream fileOut = new FileOutputStream( CATALOG_FILENAME );
+			
+			ObjectOutputStream out = new ObjectOutputStream( fileOut );
+			
+			out.writeObject( catalog );
+			
+			out.close();
+			
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+	}
 	/*
 	* Return the Product specification for a given a UPC code
 	* @return ProductSpec the product specification for the given UPC

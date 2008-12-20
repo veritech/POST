@@ -3,9 +3,9 @@
     Payment class for supermarket application
 */
 
-package post;
+package post.recordtypes;
 
-public class Payment
+public class Payment 
 {
     private double amount;
 

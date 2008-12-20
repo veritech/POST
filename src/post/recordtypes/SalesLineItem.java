@@ -2,7 +2,7 @@
     SalesLineitem.java
     Part of a sale in the supermarket application
 */
-package post;
+package post.recordtypes;
 
 //import post.*;
 

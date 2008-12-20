@@ -3,28 +3,37 @@
     This class has creation responsibilities for Post and ProductCatalog
     It also is associated bi-directionally with Post
 */
-package post;
+package post.controllers;
 
 import java.util.*;
 import java.io.*;
 
-public class Store
+import post.models.*;
+import post.recordtypes.*;
+
+public class Store extends Controller
 {
         
-    //Product catalog
-    private ProductCatalog productCatalog = new ProductCatalog();
-    
-    //
+    //reference to the post model
     private Post post;
     
-    //Collection of sales
-    private Sale[] sales  = new Sale[50];
+    //Product catalog Model
+    private ProductCatalog productCatalog;
     
-    //Counter, number of sales
-    private int index = 0;
-    
+    //Sales Model
+    private Sales sales;
+	
+	public Store(){
+		
+		//Get a model instance from the manager model
+		productCatalog = (ProductCatalog) ModelManager.getInstance( ModelManager.PRODUCT_CATALOG );
+		sales = (Sales) ModelManager.getInstance( ModelManager.SALES );
+		
+	}
+	
     /*
-    * 
+    *  
+    *
     * @return 
     */
     public Post addPost()
@@ -40,7 +49,7 @@ public class Store
 	*/
     public void addSale(Sale saleIn)
     {
-        sales[index] = saleIn;
-        index++;
+        sales.add(saleIn);
+
     }
 }

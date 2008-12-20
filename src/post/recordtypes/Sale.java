@@ -5,11 +5,11 @@
     
     consider implementing the enumerable interface, to allow quick reading of items
 */
-package post;
+package post.recordtypes;
 
 import java.util.*;
 
-public class Sale
+public class Sale extends AbstractRecord
 {
     //Date of the current transaction
     private Date date = new Date();
@@ -89,4 +89,8 @@ public class Sale
         }
         return 0;
     }
+    
+    public String getKey(){
+		return this.date.toString();    
+   	}
 }

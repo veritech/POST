@@ -9,7 +9,7 @@
 package post.tests;
 
 import junit.framework.TestCase;
-import post.Payment;
+import post.recordtypes.Payment;
 
 public class PaymentTest extends TestCase {
 	

@@ -3,11 +3,11 @@
     Specification of a product in the context of
     a supermarket application
 */
-package post;
+package post.recordtypes;
 
-import java.io.*;
+import post.recordtypes.AbstractRecord;
 
-public class ProductSpec
+public class ProductSpec extends AbstractRecord
 {
     private String description = "";
     private double price = 0;
@@ -56,5 +56,9 @@ public class ProductSpec
         System.out.println("UPC: " + upc);
         System.out.println("Desc: " + description);
         System.out.println("Price: " + price);
+    }
+    
+    public String getKey(){
+    	return String.valueOf( this.upc );
     }
 }

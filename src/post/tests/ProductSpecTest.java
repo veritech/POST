@@ -9,7 +9,7 @@
 package post.tests;
 
 import junit.framework.TestCase;
-import post.ProductSpec;
+import post.recordtypes.ProductSpec;
 
 public class ProductSpecTest extends TestCase {
 	

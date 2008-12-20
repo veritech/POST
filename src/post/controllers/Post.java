@@ -3,9 +3,12 @@
     This class acts as controller for the supermarket
     application
 */
-package post;
+package post.controllers;
 
-public class Post
+import post.models.*;
+import post.recordtypes.*;
+
+public class Post extends Controller
 {
 	
 	//Sale object, holds current sale
@@ -18,7 +21,8 @@ public class Post
     private Store store = null;
 	
 	/*
-	* 
+	* Constructor 
+	*
 	* @param pcIn Prodcut catalog object
 	* @param stIn Store object
 	*/
@@ -76,6 +80,14 @@ public class Post
         sale.makePayment(total);
         store.addSale(sale);
         return cash - total;
+    }
+    
+    /*
+    *	Extract the sale from
+    *	@return sale the current sale;
+    */
+    public Sale getSale(){
+    	return this.sale;
     }
  		
 }

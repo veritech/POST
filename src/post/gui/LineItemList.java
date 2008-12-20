@@ -3,13 +3,15 @@ package post.gui;
 import javax.swing.*;
 import java.awt.*;
 
+import post.gui.adapters.*;
+
 public class LineItemList extends JList {
 	
-	private static String [] temp = {"Product 1","Product 2","Product 3","Product 4"};
+	private static ListModel listModel = new ProductsListAdapter();
 	
 	public LineItemList(){
 		
-		super( temp );
+		super( listModel );
 		
 		this.setMinimumSize( new Dimension( 100, 200) );
 		//this.setShowGrid( true );

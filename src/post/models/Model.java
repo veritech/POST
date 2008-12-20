@@ -2,7 +2,11 @@
 	MODEL class
 	
 	CRUD based data storage class
-
+	
+	Could conform to the Collection Interface
+	
+	This class has a collection composited instead of
+	inheirited to allow an abstraction of the internal store.
 */
 
 package post.models;
@@ -12,20 +16,27 @@ import java.io.*;
 
 import post.recordtypes.AbstractRecord;
 
-public class Model {
+public class Model{
 	
 	//Name for the class
 	protected String name;
 	
 	//Backing store for the model
-	protected HashMap<String,AbstractRecord> backingStore =  new HashMap();
+	protected ArrayList<Object> backingStore =  new ArrayList();
 	
 	
 	//Constructor
-	/*public Model();
+	public Model()
 	{
-		//By default we set the backing store to use a hashtable
-	}*/
+		//Check if the file exist
+		File file = new File( name + ".bin" );
+		
+		//If the file exists
+		if( file.exists() ){
+			this.load();
+		}
+
+	}
 	
 	//Destructor
 	protected void finalize() throws Throwable
@@ -36,45 +47,55 @@ public class Model {
 	/*
 	* Add an object to the internal store
 	*/
-    public void add( AbstractRecord obj) {
-        
-        if( obj != null ){
-        	
-        	//Get the key
-        	this.backingStore.put( obj.getKey(), obj );
-        	
-        }
+    public boolean add( Object obj) {   
+        return this.backingStore.add( obj );
+    }
+    
+    /*
+    *
+    */
+    public void add( int index, Object Element){
+    	this.backingStore.add( index, Element );
     }
 
 	/*
-	* Remove an object from the internal store
+	*
 	*/
-    public void delete( AbstractRecord obj ) {
+	public boolean isEmpty(){
+		return this.backingStore.isEmpty();
+	}
 
-		if( obj != null ){
-			
-			this.backingStore.remove( obj.getKey() );
-			
-		}
+	/*
+	* Remove an object from the internal store using the
+	*/
+	public Object remove( int index ){
+		return this.backingStore.remove( index );
+	}
+
+	/*
+	* Remove an object from the internal store, by looking up the same object
+	*/
+    public boolean remove( Object obj ) {
+		return this.backingStore.remove( obj );
     }	
 	
 	/*
 	* Get an iterator of all the objects in backing store
 	*/
-    public AbstractRecord read( String key ) {
+    public Object read( Object key ) {
     	
-        return this.backingStore.get( key );
+        return this.backingStore.get( (Integer)key );
     }
 	
 	/*
 	*
 	*/
-    public void update( AbstractRecord obj ) {
+    public void update( Object obj ) {
         // TODO Auto-generated method stub
 
     }
 	
-	public int length(){
+	public int size(){
 		return this.backingStore.size();
 	}
 	

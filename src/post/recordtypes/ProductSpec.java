@@ -7,7 +7,7 @@ package post.recordtypes;
 
 import post.recordtypes.AbstractRecord;
 
-public class ProductSpec extends AbstractRecord
+public class ProductSpec extends AbstractRecord 
 {
     private String description = "";
     private double price = 0;

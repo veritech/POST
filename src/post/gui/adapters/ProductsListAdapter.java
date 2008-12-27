@@ -22,7 +22,7 @@ public class ProductsListAdapter implements ListModel {
 
     public Object getElementAt(int index) {
         // TODO Implement getElementAt method
-        return "String";
+        return productCatalog.read( index );
     }
 
     public int getSize() {

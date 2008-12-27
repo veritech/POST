@@ -6,11 +6,17 @@
 
 package post.gui;
 
+import post.controllers.UIController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class MainWindow extends JFrame implements ActionListener, WindowListener{
+public class MainWindow extends JFrame{
+	
+	/**
+	* Get an instance of the controller, and pass a reference to this JFrame
+	*/
+	private UIController controller = UIController.getInstance(this);
 	
 	//Reused button container
 	private JButton btn;
@@ -32,7 +38,7 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
 	private Container sidePane = new LineItemList();
 	
 	//Detail panel
-	private JPanel detailPanel = new DetailPanel();
+	private JPanel detailPanel = new DetailPanel( controller );
 	
 	//Grid layout
 	private	GridBagConstraints layout = new GridBagConstraints();
@@ -52,28 +58,27 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
 		this.setSize( new Dimension( 480, 360) );
 		
 		//Set this object as the window listener
-		this.addWindowListener( this );
+		this.addWindowListener( controller );
 		
 		//Setup the menu
 		JMenuBar menuBar = new JMenuBar();
 		
 		//Open menu item
 		menuItem = new JMenuItem("Open");
-		menuItem.addActionListener( this );
+		menuItem.addActionListener( controller );
 		fileMenu.add( menuItem );
 		
 		//Save menu item
 		menuItem = new JMenuItem("Save");
-		menuItem.addActionListener( this );
+		menuItem.addActionListener( controller );
 		fileMenu.add( menuItem );
 
-
 		menuItem = new JMenuItem("Add Product");
-		menuItem.addActionListener( this );
+		menuItem.addActionListener( controller );
 		productMenu.add( menuItem );
 		
 		menuItem = new JMenuItem("Remove Product");
-		menuItem.addActionListener( this );
+		menuItem.addActionListener( controller );
 		productMenu.add( menuItem );
 		
 		menuBar.add( fileMenu );
@@ -95,7 +100,7 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
 		
 		btn.setActionCommand("sale");
 		
-		btn.addActionListener( this );
+		btn.addActionListener( controller );
 		
 		btn.setToolTipText("Complete Sale");
 		
@@ -112,7 +117,7 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
 		
 		btn.setActionCommand("log");
 		
-		btn.addActionListener( this );
+		btn.addActionListener( controller );
 		
 		btn.setToolTipText("View Transaction Log");
 		
@@ -125,7 +130,7 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
 		
 		btn.setActionCommand("foo");
 		
-		btn.addActionListener( this );
+		btn.addActionListener( controller );
 		
 		btn.setToolTipText("Foo");
 		
@@ -169,7 +174,7 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
 		
 		comboBox.setActionCommand( "comboBox" );
 		
-		comboBox.addActionListener( this );
+		comboBox.addActionListener( controller );
 		
 		comboBox.setToolTipText( "Quantity" );
 		
@@ -180,103 +185,12 @@ public class MainWindow extends JFrame implements ActionListener, WindowListener
 		
 		btn.setActionCommand("add");
 		
-		btn.addActionListener( this );
+		btn.addActionListener( controller );
 		
 		layout.gridx = 3;
 		layout.gridy = 2;
 		
 		pane.add( btn, layout );
-	}
-	
-	/**
-	*	Save the models
-	*/
-	private void save(){
-		
-	}
-	
-	/**
-	*	Events Action controller method
-	*	@param e The ActionEvent
-	*/
-	public void actionPerformed(ActionEvent e) {
+	}	
 
-        if( e.getActionCommand().equals("sale") ){
-        	System.out.println("Pressed Sale");
-        	//TODO Respond to sale button action
-        }
-        else if( e.getActionCommand().equals("log") ){
-        	System.out.println("Pressed log");
-        	//TODO Respond to Log button action
-        }
-        else if( e.getActionCommand().equals("add") ){
-			//TODO Respond to Add button action
-        }
-        else if( e.getActionCommand().equals("comboBox") ){
-        	System.out.println("Combobox");
-        	//TODO Respond to combo box action
-        }
-        //Deal with menu actions
-        else if( e.getActionCommand().equals("Add Product") ){
-        	
-        	AddProductWindow.getInstance().setVisible( true );
-
-        }
-        else if( e.getActionCommand().equals("Remove Product") ){
-        	//TODO Repond to remove Product
-        }
-        else{
-        	System.out.println( e.getActionCommand() );
-        }
-
-    }
-    
-    /**
-    *	Window Events
-    */
-    public void windowActivated( WindowEvent e ){
-    	//TODO Implement Window Activated
-    }
-    
-    public void windowClosed( WindowEvent e ){
-    	//TODO Implement window closed
-    }
-    
-    //Call save before close
-    public void windowClosing( WindowEvent e ){
-    	
-    	int response = JOptionPane.showConfirmDialog( this, 
-    		"Do you want save your changes?" ,
-    		"Save Changes?", 
-    		JOptionPane.YES_NO_OPTION
-    	);
-    	
-    	switch( response ){
-    		case JOptionPane.YES_OPTION:
-    			//TODO Handle Save option
-    			
-    			
-    			
-    			System.out.print("Saving");
-    			break;
-    		case JOptionPane.NO_OPTION:
-    			//TODO handle Don't save option
-    			System.out.print("No Option");
-    			break;
-    	}
-    	
-    }
-    
-    public void windowDeactivated(WindowEvent e){
-    	//TODO Implement window Deactivated
-    }
-	public void windowDeiconified(WindowEvent e){
-		//TODO Implement window deiconified
-	}
-	public void windowIconified(WindowEvent e){
-		//TODO Implement windowIconified
-	}
-	public void windowOpened(WindowEvent e){
-		//TODO Implement windowOpenedcon	
-	}
 }

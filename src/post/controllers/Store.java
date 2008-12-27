@@ -26,7 +26,7 @@ public class Store extends Controller
 
 	}
 	
-    /*
+    /**
     *  
     *
     * @return 
@@ -37,7 +37,7 @@ public class Store extends Controller
         return post;
     }
 
-	/*
+	/**
 	* Add a sale to the internal store
 	*
 	* @param saleIn A sale object to be added to the internal collection
@@ -46,5 +46,13 @@ public class Store extends Controller
     {
         sales.add(saleIn);
 
+    }
+    
+    public void save(){
+    	productCatalog.save();
+    }
+    
+    public void load(){
+    	//post.load();
     }
 }

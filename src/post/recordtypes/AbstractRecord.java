@@ -1,6 +1,8 @@
 package post.recordtypes;
 
-public abstract class AbstractRecord {
+import java.io.*;
+
+public abstract class AbstractRecord implements Serializable{
 
 	public abstract String getKey();
 }

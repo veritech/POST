@@ -8,9 +8,7 @@ public class PostApplication implements Runnable {
 
 	
     public void run() {
-    	
-		Store store = new Store();			
-		
+
 		JFrame mainWindow = new MainWindow("POST");
 		
 		mainWindow.setVisible( true );

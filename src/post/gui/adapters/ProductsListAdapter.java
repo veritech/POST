@@ -16,21 +16,21 @@ public class ProductsListAdapter implements ListModel {
 	}
 	
     public void addListDataListener(ListDataListener l) {
-        // TODO Auto-generated method stub
+        // TODO Implement addListDataListener method
 
     }
 
     public Object getElementAt(int index) {
-        // TODO Auto-generated method stub
+        // TODO Implement getElementAt method
         return "String";
     }
 
     public int getSize() {
-        return productCatalog.length();
+        return productCatalog.size();
     }
 
     public void removeListDataListener(ListDataListener l) {
-        // TODO Auto-generated method stub
+        // TODO Implement removeListDataListener
 
     }
 

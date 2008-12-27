@@ -14,17 +14,16 @@ package post.models;
 import java.util.*;
 import java.io.*;
 
-import post.recordtypes.AbstractRecord;
-
 public class Model{
 	
 	//Name for the class
 	protected String name;
 	
 	//Backing store for the model
-	protected ArrayList<Object> backingStore =  new ArrayList();
+	protected ArrayList<Object> backingStore =  new ArrayList<Object>();
 	
-	
+	//Has the model data been loaded from disk
+	protected boolean isLoaded = false;
 	//Constructor
 	public Model()
 	{
@@ -91,8 +90,7 @@ public class Model{
 	*
 	*/
     public void update( Object obj ) {
-        // TODO Auto-generated method stub
-
+        // TODO Implement Update Method
     }
 	
 	public int size(){
@@ -114,6 +112,13 @@ public class Model{
 	*/
 	
 	/*
+		Determine if the internal store has been loaded from the disk
+	*/
+	public boolean isLoaded(){
+		return this.isLoaded;
+	}
+	
+	/*
 	*	Load the internal store from a file
 	*/
 	public void load(){
@@ -124,8 +129,9 @@ public class Model{
 			
 			ObjectInputStream in = new ObjectInputStream( fileIn );
 			
-			this.backingStore = (HashMap<String, AbstractRecord>) in.readObject();
+			this.backingStore = (ArrayList<Object>) in.readObject();
 			
+			this.isLoaded = true;
 		}
 		catch(Exception e ){
 			

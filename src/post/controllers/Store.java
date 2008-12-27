@@ -5,9 +5,6 @@
 */
 package post.controllers;
 
-import java.util.*;
-import java.io.*;
-
 import post.models.*;
 import post.recordtypes.*;
 
@@ -17,18 +14,16 @@ public class Store extends Controller
     //reference to the post model
     private Post post;
     
+    //The Below variables use a manager to load a singleton instance
     //Product catalog Model
-    private ProductCatalog productCatalog;
+    private ProductCatalog productCatalog = (ProductCatalog) ModelManager.getInstance( ModelManager.PRODUCT_CATALOG );
     
     //Sales Model
-    private Sales sales;
+    private Sales sales = (Sales) ModelManager.getInstance( ModelManager.SALES );
 	
+	//Public constructor	
 	public Store(){
-		
-		//Get a model instance from the manager model
-		productCatalog = (ProductCatalog) ModelManager.getInstance( ModelManager.PRODUCT_CATALOG );
-		sales = (Sales) ModelManager.getInstance( ModelManager.SALES );
-		
+
 	}
 	
     /*

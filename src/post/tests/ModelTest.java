@@ -27,7 +27,7 @@ public class ModelTest extends TestCase {
 		
 	}
 	
-	public void testRead(){
+	public void testReadWithIndex(){
 		
 		model.add("Hello Collection");
 		
@@ -36,6 +36,21 @@ public class ModelTest extends TestCase {
 		String foo = (String) model.read(0);
 		
 		assertEquals("Hello Collection", foo);
+		
+	}
+	
+	public void testReadWithObject(){
+		
+		String foo = "Hello Collection";
+		String bar;
+		
+		model.add( foo );
+		
+		assertEquals( 1, model.size() );
+		
+		bar = (String) model.read( foo );
+		
+		assertEquals( bar, foo );
 		
 	}
 	

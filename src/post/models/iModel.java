@@ -6,10 +6,6 @@
 
 package post.models;
 
-import java.util.*;
-
-import post.recordtypes.AbstractRecord;
-
 public interface iModel {
     
     public void add( Object obj );

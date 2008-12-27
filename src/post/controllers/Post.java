@@ -57,7 +57,18 @@ public class Post extends Controller
     }
 
 	/*
+	* Start a new sale
+	* Called at the start of each transaction
+	*/
+	public void startSale(){
+		// TODO Complete function
+		sale = new Sale();
+	}
+
+	/*
 	* End a sale
+	* Called to calculate the total of the transaction
+	* 
 	*/
     public double endSale()
     {
@@ -82,12 +93,16 @@ public class Post extends Controller
         return cash - total;
     }
     
-    /*
+    /**
     *	Extract the sale from
     *	@return sale the current sale;
     */
     public Sale getSale(){
     	return this.sale;
+    }
+    
+    public void save(){
+    	productCatalog.save();
     }
  		
 }

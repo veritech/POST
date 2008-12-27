@@ -5,9 +5,6 @@
 */
 package post.models;
 
-import java.io.*;
-import java.util.*;
-
 import post.recordtypes.ProductSpec;
 
 public class ProductCatalog extends Model

@@ -3,9 +3,8 @@ package post;
 import post.controllers.*;
 import post.gui.*;
 import javax.swing.*;
-import java.awt.*;
 
-public class Application implements Runnable {
+public class PostApplication implements Runnable {
 
 	
     public void run() {
@@ -20,11 +19,11 @@ public class Application implements Runnable {
     
 	public static void main( String [] args){
     	
-    	Application app = new Application();
+    	PostApplication app = new PostApplication();
     	
     	app.run();
     	
-    	System.out.print("Running");
+    	System.out.println("Running");
     }
 
 }

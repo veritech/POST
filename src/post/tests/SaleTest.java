@@ -9,7 +9,6 @@
 package post.tests;
 
 import junit.framework.TestCase;
-import post.*;
 import post.recordtypes.ProductSpec;
 import post.recordtypes.Sale;
 

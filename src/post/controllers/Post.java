@@ -8,102 +8,56 @@ package post.controllers;
 import post.models.*;
 import post.recordtypes.*;
 
-public class Post extends Controller
+public class Post implements iTransaction
 {
 	
-	//Sale object, holds current sale
-    private Sale sale = null;
-    
-   //Product catalog
-    private ProductCatalog productCatalog = null;
-    
-    //Store
-    private Store store = null;
+	private Store storeInstance;
 	
-	/*
-	* Constructor 
+    //Sales Model
+    private Sales sales = (Sales) ModelManager.getInstance( ModelManager.SALES );
+
+	public Post( Store obj ){
+		this.storeInstance = obj;
+	}
+	
+	/**
+	*	Transaction is about to begin
 	*
-	* @param pcIn Prodcut catalog object
-	* @param stIn Store object
 	*/
-    public Post(ProductCatalog pcIn, Store stIn)
-    {
-        productCatalog = pcIn;
-        store = stIn;
-
+	public void willBegin(){
+		
 	}
-
-	/*
-	* Begin a new sale
-	* @return status of the current sale
+	
+	/**
+	*	Transaction has began
+	*
 	*/
-    public boolean isNewSale()
-    {
-        return (sale == null || sale.isComplete());
-    }
-
-	/*
-	* Insert new data into product catalogue
-	*/
-    public void enterItem(int upc, int quantIn)
-    {
-        ProductSpec ps = productCatalog.specification(upc);
-
-        if(isNewSale())
-        {
-            sale = new Sale();
-        }
-        sale.makeLineItem(ps, quantIn);
-    }
-
-	/*
-	* Start a new sale
-	* Called at the start of each transaction
-	*/
-	public void startSale(){
-		// TODO Complete function
-		sale = new Sale();
+	public void begin(){
+		
 	}
-
-	/*
-	* End a sale
-	* Called to calculate the total of the transaction
-	* 
+	
+	public void rollback(){
+		
+	}
+	
+	/**
+	*	Transaction is about to end
+	*
 	*/
-    public double endSale()
-    {
-        if (sale!= null)
-        {
-            sale.becomeComplete();
-            return sale.getTotal();
-        }
-        return 0.0;
-    }
-
-	/*
-	* Make a transaction
-	* 
+	public void willEnd(){
+		
+		//get the current sale object
+		sales.add( (Sale) ModelManager.getInstance( ModelManager.CURRENT_SALE ) );
+		
+	}
+	
+	/**
+	*	Transaction has ended
+	*
 	*/
-    public double makePayment(double cash)
-    {
-        double total = sale.getTotal();
-
-        sale.makePayment(total);
-        store.addSale(sale);
-        return cash - total;
-    }
-    
-    /**
-    *	Extract the sale from
-    *	@return sale the current sale;
-    */
-    public Sale getSale(){
-    	return this.sale;
-    }
-    
-    public void save(){
-    	productCatalog.save();
-    }
+	public void end(){
+		
+	}
  		
 }
 

@@ -5,10 +5,12 @@ public class ModelManager {
 	//Models
 	private static ProductCatalog productCatalogInstance = new ProductCatalog();
 	private static Sales salesInstance = new Sales();
+	private static Sale currentSaleInstance = new Sale();
 	
 	//Constants used to select model
 	public static final int SALES = 1;
 	public static final int PRODUCT_CATALOG = 2;
+	public static final int CURRENT_SALE = 3;
 	
 	/**
 		Hide the constructor from public view
@@ -44,6 +46,10 @@ public class ModelManager {
 				
 				return productCatalogInstance;
 			
+			case CURRENT_SALE:
+			
+				return currentSaleInstance;
+				
 			default:
 				return null;
 		}

@@ -39,6 +39,8 @@ public class ModelTest extends TestCase {
 		
 	}
 	
+	/*
+		Read by object is no longer supported
 	public void testReadWithObject(){
 		
 		String foo = "Hello Collection";
@@ -52,7 +54,7 @@ public class ModelTest extends TestCase {
 		
 		assertEquals( bar, foo );
 		
-	}
+	}*/
 	
 	public void testRemove(){
 		

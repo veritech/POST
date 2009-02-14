@@ -9,7 +9,6 @@ package post.gui;
 import post.controllers.UIController;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class MainWindow extends JFrame{
 	
@@ -60,42 +59,20 @@ public class MainWindow extends JFrame{
 		//Set this object as the window listener
 		this.addWindowListener( controller );
 		
-		//Setup the menu
-		JMenuBar menuBar = new JMenuBar();
-		
-		//Open menu item
-		menuItem = new JMenuItem("Open");
-		menuItem.addActionListener( controller );
-		fileMenu.add( menuItem );
-		
-		//Save menu item
-		menuItem = new JMenuItem("Save");
-		menuItem.addActionListener( controller );
-		fileMenu.add( menuItem );
-
-		menuItem = new JMenuItem("Add Product");
-		menuItem.addActionListener( controller );
-		productMenu.add( menuItem );
-		
-		menuItem = new JMenuItem("Remove Product");
-		menuItem.addActionListener( controller );
-		productMenu.add( menuItem );
-		
-		menuBar.add( fileMenu );
-		menuBar.add( editMenu );
-		menuBar.add( productMenu );
-		menuBar.add( helpMenu );
-		
-		this.setJMenuBar( menuBar );
+		//Setup the menu bar
+		this.setJMenuBar( this.createMenuBar() );
 		
 		//Setup the layout
-		Container pane = this.getContentPane();
-			
-		pane.setLayout( new GridBagLayout() );
+		this.getContentPane().setLayout( new GridBagLayout() );
 		
-		layout.anchor = GridBagConstraints.NORTHWEST;
+		//Create the rows
 		
-		//ROW 1
+		this.createRowYi();
+		this.createRowEr();
+		this.createRowSan();
+	}	
+	
+	private void createRowYi(){
 		btn = new JButton("Sale");
 		
 		btn.setActionCommand("sale");
@@ -110,7 +87,7 @@ public class MainWindow extends JFrame{
 		layout.ipadx = 10;
 		layout.ipady = 10;
 		
-		pane.add( btn, layout);
+		this.getContentPane().add( btn, layout);
 		
 		//Log button
 		btn = new JButton("Log");
@@ -123,7 +100,7 @@ public class MainWindow extends JFrame{
 		
 		layout.gridx = 1;
 		
-		pane.add( btn, layout );
+		this.getContentPane().add( btn, layout );
 		
 		//Foo button
 		btn = new JButton("foo");
@@ -136,8 +113,10 @@ public class MainWindow extends JFrame{
 		
 		layout.gridx = 2;
 		
-		pane.add( btn, layout );
-
+		this.getContentPane().add( btn, layout );
+	}
+	
+	private void createRowEr(){
 		//ROW 2
 		//Sidebar
 		layout.fill = GridBagConstraints.BOTH;
@@ -145,7 +124,7 @@ public class MainWindow extends JFrame{
 		layout.gridx = 0;
 		layout.gridy = 1;
 
-		pane.add( sidePane, layout );
+		this.getContentPane().add( sidePane, layout );
 		
 		//Detail panel
 		layout.gridx = 1;
@@ -153,19 +132,18 @@ public class MainWindow extends JFrame{
 		layout.gridwidth = 3;
 		layout.weightx = 0.5;
 		
-		pane.add( detailPanel, layout );
-		
+		this.getContentPane().add( detailPanel, layout );
+	}
+	
+	private void createRowSan(){
 		//ROW 3
+		layout.gridwidth = 1;
 		layout.fill = GridBagConstraints.NONE;
-
 		layout.gridy = 2;
 		
 		//Combobox label
 		layout.gridx = 1;
-		pane.add( new JLabel("Quantity"), layout );
-		
-		//Combobox
-		layout.gridx = 2;
+		this.getContentPane().add( new JLabel("Quantity"), layout );
 		
 		//Generate some quantities
 		for( int i=0; i <= 10; i++ ){
@@ -178,7 +156,10 @@ public class MainWindow extends JFrame{
 		
 		comboBox.setToolTipText( "Quantity" );
 		
-		pane.add( comboBox, layout );
+		//Combobox
+		layout.gridx = GridBagConstraints.RELATIVE;
+		
+		this.getContentPane().add( comboBox, layout );
 		
 		//Add button
 		btn = new JButton("Add");
@@ -187,10 +168,53 @@ public class MainWindow extends JFrame{
 		
 		btn.addActionListener( controller );
 		
-		layout.gridx = 3;
-		layout.gridy = 2;
+		layout.gridx = GridBagConstraints.RELATIVE;
 		
-		pane.add( btn, layout );
-	}	
+		this.getContentPane().add( btn, layout );
+	}
+	
+	private JMenuBar createMenuBar(){
+				//Setup the menu
+		JMenuBar menuBar = new JMenuBar();
+		
+		//Open menu item
+		menuItem = new JMenuItem("Open");
+		menuItem.addActionListener( controller );
+		fileMenu.add( menuItem );
+		
+		//Save menu item
+		menuItem = new JMenuItem("Save");
+		menuItem.addActionListener( controller );
+		fileMenu.add( menuItem );
 
+
+		//Edit Menu
+		menuItem = new JMenuItem("Cut");
+		menuItem.addActionListener( controller );
+		editMenu.add( menuItem );
+		
+		menuItem = new JMenuItem("Edit");
+		menuItem.addActionListener( controller );
+		editMenu.add( menuItem );
+
+		menuItem = new JMenuItem("Paste");
+		menuItem.addActionListener( controller );
+		editMenu.add( menuItem );
+
+		menuItem = new JMenuItem("Add Product");
+		menuItem.addActionListener( controller );
+		productMenu.add( menuItem );
+		
+		menuItem = new JMenuItem("Remove Product");
+		menuItem.addActionListener( controller );
+		productMenu.add( menuItem );
+		
+		menuBar.add( fileMenu );
+		menuBar.add( editMenu );
+		menuBar.add( productMenu );
+		menuBar.add( helpMenu );
+		
+		return menuBar;
+	}
+	
 }

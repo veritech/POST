@@ -26,7 +26,7 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	/**
 	* Protected constructor
 	*/
-	protected UIController( JFrame obj){
+	protected UIController( JFrame obj ){
 		this.mainWindow = obj;
 	}
 	

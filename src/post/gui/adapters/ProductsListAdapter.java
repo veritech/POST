@@ -1,6 +1,7 @@
 package post.gui.adapters;
 
 import post.models.*;
+import post.recordtypes.*;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
@@ -22,7 +23,9 @@ public class ProductsListAdapter implements ListModel {
 
     public Object getElementAt(int index) {
         // TODO Implement getElementAt method
-        return productCatalog.read( index );
+        ProductSpec product = (ProductSpec) productCatalog.read( index );
+         
+        return product.getDescription();
     }
 
     public int getSize() {

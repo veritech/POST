@@ -1,80 +1,98 @@
-/*
-	Jonathan Dalrymple
-	
-	Test case for Sale class
-	
-	December 17, 2008
-
-*/
 package post.tests;
 
 import junit.framework.TestCase;
-import post.recordtypes.ProductSpec;
-import post.recordtypes.Sale;
+import post.models.*;
+import post.recordtypes.*;
 
 public class SaleTest extends TestCase {
-	
-	private Sale saleA;
-	
-	//Sample products
-	private ProductSpec productSpecA;
-	private ProductSpec productSpecB;
-	
+
+    private Sale saleA;
+    
+    //Sample products
+    private ProductSpec productSpecA;
+    private ProductSpec productSpecB;
+    
     protected void setUp() throws Exception {
         super.setUp();
         
         saleA = new Sale();
         
-        productSpecA = new ProductSpec(111111, "Chick Peas 500g", 0.75 );
-        productSpecB = new ProductSpec(111112, "Tomatoes 500g", 0.45 );
-       	
     }
 
     protected void tearDown() throws Exception {
         super.tearDown();
     }
 
-    public void testBecomeComplete() {
-
+    public void testAddIntInt() {
+        saleA.addProduct( 111111, 2 );
         
-        //fail("Not yet implemented");
-    }
-
-    public void testIsComplete() {
-        
-        assertFalse( saleA.isComplete() );
-
-    }
-
-    public void testMakeLineItem() {
-
-        saleA.makeLineItem( productSpecB, 10 );
-        
-        assertEquals( 1, saleA.countLineItems() );
+        assertEquals(1, saleA.size() );
     }
 
     public void testGetTotal() {
-		
-		saleA.makeLineItem( productSpecA, 10 );
-		
-		assertEquals( 7.50, saleA.getTotal() );
+        
+        saleA.addProduct( 111111, 2 );
+        
+        assertEquals( 0.9, saleA.getTotal() );
+        
+        saleA.addProduct( 111112, 4 );
+        
+        assertEquals( 2.7, saleA.getTotal() );
     }
 
-/*
     public void testMakePayment() {
+        
+        saleA.addProduct( 111111, 2 );
+        
+        saleA.makePayment( 2.0 );
+        
+        assertEquals( 1.1, saleA.getBalance() );
+        
+    }
+
+    public void testGetBalance() {
+        
+        assertEquals( 0.0, saleA.getBalance() );
+    }
+/*
+    public void testWillBegin() {
+        fail("Not yet implemented");
+    }
+
+    public void testBegin() {
+        fail("Not yet implemented");
+    }
+
+    public void testRollback() {
+        fail("Not yet implemented");
+    }
+
+    public void testWillEnd() {
+        fail("Not yet implemented");
+    }
+
+    public void testEnd() {
+        fail("Not yet implemented");
+    }
+
+    public void testAddListDataListener() {
+        fail("Not yet implemented");
+    }
+    
+    public void testRemoveListDataListener() {
         fail("Not yet implemented");
     }
 */
+    public void testGetElementAt() {
+        
+        saleA.addProduct( 111111, 2 );
+        
+        //assertEquals( productSpecA, saleA.getElementAt(1) );
+    }
 
-    public void testGetBalance() {
-		
-		//Purchase product
-		saleA.makeLineItem( productSpecB, 10 );
-		//make a payment
-		saleA.makePayment( 10.00 );
-		
-		//Test
-		assertEquals( 5.5, saleA.getBalance() );
+    public void testGetSize() {
+        
+        assertEquals( 0, saleA.getSize() );
     }
 
 }

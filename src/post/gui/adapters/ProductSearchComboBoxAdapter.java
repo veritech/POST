@@ -6,6 +6,7 @@
 package post.gui.adapters;
 
 import post.models.*;
+import post.recordtypes.*;
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 
@@ -26,7 +27,10 @@ public class ProductSearchComboBoxAdapter implements ComboBoxModel{
      * @see javax.swing.ListModel#getElementAt(int)
      */
     public Object getElementAt(int index) {
-        return productCatalog.read( index );
+    	
+    	ProductSpec product = (ProductSpec) productCatalog.read( index );
+    	
+        return product.getDescription();
     }
 
     /**

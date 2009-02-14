@@ -22,8 +22,21 @@ public class ProductCatalog extends Model
     public ProductSpec specification(int upc)
     {
 
-        //Box the passed int;
-        return (ProductSpec) this.read( String.valueOf(upc) );
+        //loop through the collection and look for the upc
+        ProductSpec retVal = null;
+        
+        for( java.util.Iterator it = this.backingStore.iterator(); it.hasNext(); ){
+        	//Get the next object
+        	ProductSpec spec = (ProductSpec) it.next();
+        	
+        	//Does the upc match
+        	if( spec.getUpc() == upc ){
+        		retVal = spec;
+        		break;
+        	}
+        }
+        
+        return retVal;
         
     }
 		

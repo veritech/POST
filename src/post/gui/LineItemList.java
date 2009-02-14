@@ -1,13 +1,15 @@
 package post.gui;
 
+
 import javax.swing.*;
 import java.awt.*;
 
+import post.models.*;
 import post.gui.adapters.*;
 
 public class LineItemList extends JList {
 	
-	private static ListModel listModel = new ProductsListAdapter();
+	private static ListModel listModel = (ListModel) ModelManager.getInstance( ModelManager.CURRENT_SALE );
 	
 	public LineItemList(){
 		

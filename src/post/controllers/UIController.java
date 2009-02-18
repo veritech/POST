@@ -21,12 +21,12 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	/**
 	* MainWindow Reference
 	*/
-	private JFrame mainWindow;
+	private MainWindow mainWindow;
 	
 	/**
 	* Protected constructor
 	*/
-	protected UIController( JFrame obj ){
+	protected UIController( MainWindow obj ){
 		this.mainWindow = obj;
 	}
 	
@@ -36,6 +36,10 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	public void addBtnAction(){
 		//TODO Respond to Add button action
 		System.out.println("Pressed Add");
+		
+		System.out.print( mainWindow.getComboBoxSelectedValue() );
+		
+		
 	}
 	
 	/**
@@ -156,7 +160,7 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	*	@param obj A reference to the MainWindow of the application
 	*	@return a instance of UIController
 	*/
-	public static UIController getInstance( JFrame obj){
+	public static UIController getInstance( MainWindow obj){
 		
 		//Lazily load instance, with a reference to the JFrame
 		if( instance == null ){

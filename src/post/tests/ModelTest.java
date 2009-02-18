@@ -64,7 +64,7 @@ public class ModelTest extends TestCase {
 		assertEquals( 1, model.size() );
 		
 		//remove some
-		model.remove("Hello Collection");
+		model.remove(0);
 		
 		//Check
 		assertEquals( 0, model.size() );

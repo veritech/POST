@@ -6,6 +6,7 @@
 package post.models;
 
 import post.recordtypes.ProductSpec;
+import java.util.*;
 
 public class ProductCatalog extends Model
 {
@@ -25,9 +26,9 @@ public class ProductCatalog extends Model
         //loop through the collection and look for the upc
         ProductSpec retVal = null;
         
-        for( java.util.Iterator it = this.backingStore.iterator(); it.hasNext(); ){
+        for( Enumeration e = this.elements(); e.hasMoreElements(); ){
         	//Get the next object
-        	ProductSpec spec = (ProductSpec) it.next();
+        	ProductSpec spec = (ProductSpec) e.nextElement();
         	
         	//Does the upc match
         	if( spec.getUpc() == upc ){

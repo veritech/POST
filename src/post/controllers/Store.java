@@ -89,7 +89,7 @@ public class Store extends Controller
     *	Save method
     */
     public void save(){
-    	productCatalog.save();
+    	ModelManager.save( ModelManager.PRODUCT_CATALOG );
     }
     
     /**

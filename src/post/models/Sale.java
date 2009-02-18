@@ -15,16 +15,30 @@ import post.recordtypes.Payment;
 import post.recordtypes.ProductSpec;
 import post.recordtypes.SalesLineItem;
 
-public class Sale extends Model implements ListModel, iTransaction
+public class Sale extends Model implements iTransaction
 {
     //Date of the current transaction
-    private Date date = new Date();
+    private Date date;
 
     //Is the sale complete
     private boolean isComplete = false;
 
     //Payment object, cash provided, change given
     private Payment payment = null;
+	
+	
+	/**
+	* Default constructor
+	*
+	*/
+	public Sale(){
+		super();
+		//Call super explictly 
+		
+		date = new Date();
+		payment = null;
+		isComplete = false;
+	}
 	
 	/**
 	* Overloaded model.add method, handles a product catalog lookup
@@ -50,9 +64,9 @@ public class Sale extends Model implements ListModel, iTransaction
     {
         double total = 0;
    
-        for(Iterator i = this.backingStore.iterator(); i.hasNext(); ){
+        for( Enumeration e = this.elements(); e.hasMoreElements(); ){
 
-        	SalesLineItem item = (SalesLineItem)i.next();
+        	SalesLineItem item = (SalesLineItem) e.nextElement();
         	
         	total += item.subtotal();
         	
@@ -98,7 +112,9 @@ public class Sale extends Model implements ListModel, iTransaction
    		this.isComplete = false;
    		
    		//Clear the backing store
-   		this.backingStore.clear();
+   		this.removeAllElements();
+   		
+   		this.payment = null;
    	}
    	
    	/**
@@ -106,14 +122,15 @@ public class Sale extends Model implements ListModel, iTransaction
    	*
    	*/
    	public void rollback(){
-   		
+   		// TODO Needs to be reimplemented
+   		/*
    		if( !this.isComplete && this.backingStore.size() > 0 ){
    			
    			//remove the last element
    			this.backingStore.remove( this.backingStore.size() - 1 );
    			
    		}
-
+		*/
    	}
    	
    	public void willEnd(){
@@ -127,24 +144,4 @@ public class Sale extends Model implements ListModel, iTransaction
    		this.isComplete = true;
    	}
    	
-   	//ListModel Interface methods
-    public void addListDataListener(ListDataListener l) {
-        // TODO Auto-generated method stub
-        System.out.print("model change");
-    }
-
-    public Object getElementAt(int index) {
-        // TODO Auto-generated method stub
-        return this.read( index );
-    }
-
-    public int getSize() {
-        // TODO Auto-generated method stub
-        return this.backingStore.size();
-    }
-
-    public void removeListDataListener(ListDataListener l) {
-        // TODO Auto-generated method stub
-        
-    }
 }

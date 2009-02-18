@@ -42,6 +42,7 @@ public class MainWindow extends JFrame{
 	//Grid layout
 	private	GridBagConstraints layout = new GridBagConstraints();
 	
+	
 	//Main constructor
 	public MainWindow( String title ){
 		//The title
@@ -215,6 +216,14 @@ public class MainWindow extends JFrame{
 		menuBar.add( helpMenu );
 		
 		return menuBar;
+	}
+	
+	/**
+	*	Quick method for getting the value of a combo box
+	*
+	*/	
+	public Object getComboBoxSelectedValue(){
+		return comboBox.getSelectedItem();
 	}
 	
 }

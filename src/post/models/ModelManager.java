@@ -1,11 +1,13 @@
 package post.models;
 
+import java.io.*;
+
 public class ModelManager {
 	
 	//Models
-	private static ProductCatalog productCatalogInstance = new ProductCatalog();
-	private static Sales salesInstance = new Sales();
-	private static Sale currentSaleInstance = new Sale();
+	private static ProductCatalog productCatalogInstance = null;
+	private static Sales salesInstance = null;
+	private static Sale currentSaleInstance = null;
 	
 	//Constants used to select model
 	public static final int SALES = 1;
@@ -13,7 +15,7 @@ public class ModelManager {
 	public static final int CURRENT_SALE = 3;
 	
 	/**
-		Hide the constructor from public view
+	*	Hide the constructor from public view
 	*/
 	protected ModelManager(){
 		
@@ -31,23 +33,26 @@ public class ModelManager {
 			case SALES:
 				
 				//If the data has not been loaded
-				if( !salesInstance.isLoaded() ){
+				if( salesInstance == null ){
 					//Load the model with data from disk
-					salesInstance.load();
+					salesInstance = (Sales) load( SALES );
 				}
 				
 				return salesInstance;
 				
 			case PRODUCT_CATALOG:
 			
-				if( !productCatalogInstance.isLoaded() ){
-					productCatalogInstance.load();
+				if( productCatalogInstance == null ){
+					productCatalogInstance = (ProductCatalog) load( PRODUCT_CATALOG );
+
 				}
 				
 				return productCatalogInstance;
 			
 			case CURRENT_SALE:
-			
+				
+				currentSaleInstance = new Sale();
+				
 				return currentSaleInstance;
 				
 			default:
@@ -56,5 +61,132 @@ public class ModelManager {
 		
 	}
 	
+	private static String getFilenameFromConst( int model ){
+	
+		switch( model ){
+			case SALES:
+				return "Sales";
+
+			case PRODUCT_CATALOG:
+				return "ProductCatalog";
+
+			case CURRENT_SALE:
+				return "CurrentSale";
+
+			default:
+				return "";
+		}
+	}
+	
+	/**
+	*	Load the internal store from a file
+	*/
+	public static Object load( int model ){
+		
+		FileInputStream fileIn;
+		ObjectInputStream in;
+		Object retVal = new Object();
+		
+ 		try{
+			
+			System.out.println( getFilenameFromConst( model ) + ".bin" );
+			
+			fileIn = new FileInputStream( getFilenameFromConst( model ) + ".bin" );
+			
+			in = new ObjectInputStream( fileIn );
+			
+			//TODO Correctly handle failure to load object from file
+			switch( model ){
+				case SALES:
+					
+					retVal =  (Sales) in.readObject();
+					
+					break;
+					
+				case PRODUCT_CATALOG:
+					
+					retVal = (ProductCatalog) in.readObject();
+
+					break;
+					
+				case CURRENT_SALE:
+					
+					retVal = (Sale) in.readObject();
+					
+					break;
+					
+			}
+			//this.isLoaded = true;
+		}
+		catch( FileNotFoundException e ){
+			//If the file cannot be found, create a new object
+			switch( model ){
+				case SALES:
+					
+					retVal = new Sales();
+					
+					break;
+					
+				case PRODUCT_CATALOG:
+					
+					retVal =  new ProductCatalog();
+					
+					break;
+					
+				case CURRENT_SALE:
+					
+					retVal = new Sale();
+					
+					break;
+			}
+			
+		}
+		catch(Exception e ){
+			
+			System.out.println(e);
+			
+		}
+		
+		
+		return retVal;
+	}
+	
+	/**
+	*	Save the internal store to a file
+	*/
+	public static void save( int model ){
+		
+		FileOutputStream fileOut;
+		ObjectOutputStream out;
+		
+ 		try{
+
+			fileOut = new FileOutputStream( getFilenameFromConst( model )  + ".bin" );
+
+			out = new ObjectOutputStream( fileOut );
+			
+			
+			//Switch can be removed as each object is not required to be cast before serialization
+			switch( model ){
+				case SALES:
+					out.writeObject( (Sales) getInstance(model) );
+					break;
+				case PRODUCT_CATALOG:
+					out.writeObject( (ProductCatalog) getInstance(model) );
+					break;
+				case CURRENT_SALE:
+					out.writeObject( (Sale) getInstance(model) );
+					break;
+				default:
+					//Do nada
+			}
+			
+			out.close();
+			
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+	}
 	
 }

@@ -37,7 +37,10 @@ public class MainWindow extends JFrame{
 	private Container sidePane = new LineItemList();
 	
 	//Detail panel
-	private JPanel detailPanel = new DetailPanel( controller );
+	private DetailPanel detailPanel = new DetailPanel( controller );
+	
+	//Subtotal
+	private JSubtotal subtotalDisplay = new JSubtotal();
 	
 	//Grid layout
 	private	GridBagConstraints layout = new GridBagConstraints();
@@ -55,7 +58,7 @@ public class MainWindow extends JFrame{
 		this.setMinimumSize( new Dimension( 480, 320) );
 		
 		//Set the size
-		this.setSize( new Dimension( 480, 360) );
+		this.setSize( new Dimension( 640, 400) );
 		
 		//Set this object as the window listener
 		this.addWindowListener( controller );
@@ -125,7 +128,7 @@ public class MainWindow extends JFrame{
 		layout.gridx = 0;
 		layout.gridy = 1;
 
-		this.getContentPane().add( sidePane, layout );
+		this.getContentPane().add( new JScrollPane(sidePane), layout );
 		
 		//Detail panel
 		layout.gridx = 1;
@@ -142,16 +145,20 @@ public class MainWindow extends JFrame{
 		layout.fill = GridBagConstraints.NONE;
 		layout.gridy = 2;
 		
+		//Subtotal display
+		layout.gridx = 0;
+		this.getContentPane().add( subtotalDisplay, layout );
+		
 		//Combobox label
 		layout.gridx = 1;
 		this.getContentPane().add( new JLabel("Quantity"), layout );
 		
 		//Generate some quantities
-		for( int i=0; i <= 10; i++ ){
+		for( int i=1; i <= 10; i++ ){
 			comboBox.addItem( String.valueOf( i ) );
 		}
 		
-		comboBox.setActionCommand( "comboBox" );
+		comboBox.setActionCommand( "quantityComboBox" );
 		
 		comboBox.addActionListener( controller );
 		
@@ -219,11 +226,18 @@ public class MainWindow extends JFrame{
 	}
 	
 	/**
-	*	Quick method for getting the value of a combo box
+	*	Quick method for getting the value of the quantity combo box
 	*
 	*/	
-	public Object getComboBoxSelectedValue(){
-		return comboBox.getSelectedItem();
+	public int getQuantity(){
+				
+		return Integer.valueOf( comboBox.getSelectedItem().toString() );
+	}
+	
+	public int getUPC(){
+		//TODO Stop returning dummy data
+		
+		return detailPanel.getSearchComboBoxValue();
 	}
 	
 }

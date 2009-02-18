@@ -8,6 +8,7 @@ package post.controllers;
 import java.awt.event.*;
 import javax.swing.*;
 import post.gui.*;
+import post.models.*;
 
 public class UIController extends Controller implements ActionListener, WindowListener{
 	
@@ -35,11 +36,9 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	*/
 	public void addBtnAction(){
 		//TODO Respond to Add button action
-		System.out.println("Pressed Add");
+		//System.out.println("Pressed Add");
 		
-		System.out.print( mainWindow.getComboBoxSelectedValue() );
-		
-		
+		storeController.buyItem( mainWindow.getUPC(), mainWindow.getQuantity() );
 	}
 	
 	/**
@@ -72,10 +71,14 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	*	Events Action controller method
 	*	@param e The ActionEvent
 	*/
-	public void actionPerformed(ActionEvent e) {
-
+	public void actionPerformed(ActionEvent e) {	
+		
         if( e.getActionCommand().equals("sale") ){
         	this.saleBtnAction();
+        	
+        	JFrame foo = new CheckoutWindow();
+        	
+        	foo.setVisible( true );
         }
         else if( e.getActionCommand().equals("log") ){
         	this.logBtnAction();

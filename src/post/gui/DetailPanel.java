@@ -2,6 +2,7 @@ package post.gui;
 
 import javax.swing.*;
 import java.awt.event.*;
+import post.recordtypes.*;
 import post.gui.adapters.*;
 
 
@@ -13,7 +14,7 @@ public class DetailPanel extends JPanel {
 		//Call the super
 		super();
 		//Uncomment to allow text to typed into the field
-		searchBox.setEditable( true );
+		//searchBox.setEditable( true );
 		
 		this.setLayout( new BoxLayout(this, BoxLayout.Y_AXIS) );
 		
@@ -27,5 +28,12 @@ public class DetailPanel extends JPanel {
 		
 		this.searchBox.setActionCommand("searchComboBox");
 		this.searchBox.addActionListener( listener );
+	}
+	
+	public Integer getSearchComboBoxValue(){
+		
+		ProductSpec retVal = (ProductSpec) searchBox.getSelectedItem();
+		
+		return retVal.getUpc();
 	}
 }

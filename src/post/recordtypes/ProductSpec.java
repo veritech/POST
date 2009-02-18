@@ -47,7 +47,10 @@ public class ProductSpec extends AbstractRecord
     {
         return description;
     }
-
+	
+	public String toString(){
+		return description;
+	}
 	/*
 	* Output the details of the product
 	*/

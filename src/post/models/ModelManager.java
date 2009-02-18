@@ -51,7 +51,12 @@ public class ModelManager {
 			
 			case CURRENT_SALE:
 				
-				currentSaleInstance = new Sale();
+				if( productCatalogInstance == null ){
+				
+					currentSaleInstance = new Sale();
+				
+				}
+				
 				
 				return currentSaleInstance;
 				

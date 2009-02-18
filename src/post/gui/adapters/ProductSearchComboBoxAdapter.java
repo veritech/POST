@@ -15,6 +15,7 @@ public class ProductSearchComboBoxAdapter implements ComboBoxModel{
     private ProductCatalog productCatalog = (ProductCatalog) ModelManager.getInstance( ModelManager.PRODUCT_CATALOG );
 	
 	private Object currentlySelected;
+
 	/**
      * @see javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener)
      */
@@ -30,7 +31,7 @@ public class ProductSearchComboBoxAdapter implements ComboBoxModel{
     	
     	ProductSpec product = (ProductSpec) productCatalog.read( index );
     	
-        return product.getDescription();
+        return product;
     }
 
     /**

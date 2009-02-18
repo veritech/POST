@@ -27,4 +27,9 @@ public class SalesLineItem
         else
             return 0.0;
     }
+    
+    public String toString(){
+    	
+    	return quantity + " x " + productSpec.getDescription() + " @ £" +  productSpec.getPrice();
+    }
 }

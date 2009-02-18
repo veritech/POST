@@ -34,8 +34,9 @@ public class Store extends Controller
 	* @param upc The upc of the item to be added to the sale
 	* @param quantity the number of items to be added to the sale
 	*/
-    public void sellItem( int upc, int quantity ){
+    public void buyItem( int upc, int quantity ){
     	
+    	System.out.println("Added the flowing " + upc + " @ " + quantity );
     	//Calls overloaded add method
     	currentSale.addProduct( upc, quantity );	
     }

@@ -37,7 +37,7 @@ public class MainWindow extends JFrame{
 	private Container sidePane = new LineItemList();
 	
 	//Detail panel
-	private DetailPanel detailPanel = new DetailPanel( controller );
+	private DetailPanel detailPanel = new DetailPanel();
 	
 	//Subtotal
 	private JSubtotal subtotalDisplay = new JSubtotal();
@@ -135,6 +135,9 @@ public class MainWindow extends JFrame{
 		layout.gridy = 1;
 		layout.gridwidth = 3;
 		layout.weightx = 0.5;
+		
+		//Add the controller as the action Listener
+		//detailPanel.addChildrenActionListener( controller );
 		
 		this.getContentPane().add( detailPanel, layout );
 	}

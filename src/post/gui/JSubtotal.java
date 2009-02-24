@@ -1,6 +1,7 @@
 package post.gui;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JTextField;
 import javax.swing.event.ListDataEvent;
@@ -20,6 +21,9 @@ public class JSubtotal extends JTextField implements ListDataListener {
         this.setForeground( Color.RED );
         
         currentSale.addListDataListener( this );
+        
+        //Give it a larger font
+        this.setFont( new Font( null, Font.BOLD, 24 ));
     }
 
     public void contentsChanged(ListDataEvent e) {
@@ -37,4 +41,9 @@ public class JSubtotal extends JTextField implements ListDataListener {
 
         this.setText( String.valueOf(currentSale.getTotal()) );
     }
+    
+    public void setText( String txt ) {
+        super.setText( "£ "+ txt );
+    }
+    
 }

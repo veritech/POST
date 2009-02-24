@@ -1,6 +1,5 @@
 package post;
 
-import post.controllers.*;
 import post.gui.*;
 import javax.swing.*;
 

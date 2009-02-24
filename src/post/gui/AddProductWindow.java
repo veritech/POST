@@ -17,9 +17,6 @@ import post.gui.SpringUtilities;
 
 public class AddProductWindow extends JFrame implements ActionListener {
 
-	//Singleton Instance
-	private static AddProductWindow instance = new AddProductWindow();
-	
 	//UPC
 	private JSpinner upcSpinner = new JSpinner( new SpinnerNumberModel() );
 		
@@ -98,13 +95,5 @@ public class AddProductWindow extends JFrame implements ActionListener {
 	
 	public void close(){
 		this.processWindowEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
-	}
-	
-	/**
-	*	Retrieve Singleton instance from class
-	* 	@return Instance of AddProductWindow Class
-	*/
-	public static AddProductWindow getInstance(){
-		return instance;
 	}
 }

@@ -6,7 +6,6 @@
 package post.controllers;
 
 import post.models.*;
-import post.recordtypes.*;
 
 public class Post implements iTransaction
 {

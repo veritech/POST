@@ -8,12 +8,8 @@
 package post.models;
 
 import java.util.*;
-import javax.swing.ListModel;
-import javax.swing.event.ListDataListener;
 
-import post.recordtypes.Payment;
-import post.recordtypes.ProductSpec;
-import post.recordtypes.SalesLineItem;
+import post.recordtypes.*;
 
 public class Sale extends Model implements iTransaction
 {
@@ -77,6 +73,8 @@ public class Sale extends Model implements iTransaction
 	
 	/**
 	* Makes a payment to the total of the sale
+	*
+	* @return The amount of the balance to settle
 	*/
     public void makePayment(double amount)
     {

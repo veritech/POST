@@ -8,7 +8,6 @@ package post.controllers;
 import java.awt.event.*;
 import javax.swing.*;
 import post.gui.*;
-import post.models.*;
 
 public class UIController extends Controller implements ActionListener, WindowListener{
 	
@@ -76,9 +75,8 @@ public class UIController extends Controller implements ActionListener, WindowLi
         if( e.getActionCommand().equals("sale") ){
         	this.saleBtnAction();
         	
-        	JFrame foo = new CheckoutWindow();
+        	WindowManager.getInstance( WindowManager.CHECKOUT ).setVisible( true );
         	
-        	foo.setVisible( true );
         }
         else if( e.getActionCommand().equals("log") ){
         	this.logBtnAction();
@@ -97,7 +95,7 @@ public class UIController extends Controller implements ActionListener, WindowLi
         }
         else if( e.getActionCommand().equals("Add Product") ){
         	
-        	AddProductWindow.getInstance().setVisible( true );
+        	WindowManager.getInstance( WindowManager.ADD_PRODUCT ).setVisible( true );
 
         }
         else if( e.getActionCommand().equals("Remove Product") ){

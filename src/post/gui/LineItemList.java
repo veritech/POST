@@ -2,10 +2,8 @@ package post.gui;
 
 
 import javax.swing.*;
-import java.awt.*;
 
 import post.models.*;
-import post.gui.adapters.*;
 
 public class LineItemList extends JList{
 	
@@ -17,8 +15,6 @@ public class LineItemList extends JList{
 		
 		super( listModel );
 		
-		
-
 		//this.setShowGrid( true );
 	}
 }

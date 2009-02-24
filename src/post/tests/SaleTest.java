@@ -2,16 +2,11 @@ package post.tests;
 
 import junit.framework.TestCase;
 import post.models.*;
-import post.recordtypes.*;
 
 public class SaleTest extends TestCase {
 
     private Sale saleA;
-    
-    //Sample products
-    private ProductSpec productSpecA;
-    private ProductSpec productSpecB;
-    
+        
     protected void setUp() throws Exception {
         super.setUp();
         

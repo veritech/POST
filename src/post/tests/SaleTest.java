@@ -12,36 +12,32 @@ public class SaleTest extends TestCase {
         
         saleA = new Sale();
         
+        saleA.addProduct( 111111, 2 );
+        
+        saleA.addProduct( 111116, 4 );
+        
     }
 
     protected void tearDown() throws Exception {
         super.tearDown();
     }
 
-    public void testAddIntInt() {
-        saleA.addProduct( 111111, 2 );
+    public void testSize(){
         
-        assertEquals(1, saleA.size() );
+        assertEquals( 2, saleA.size() );
     }
 
     public void testGetTotal() {
         
-        saleA.addProduct( 111111, 2 );
-        
-        assertEquals( 0.9, saleA.getTotal() );
-        
-        saleA.addProduct( 111112, 4 );
-        
-        assertEquals( 2.7, saleA.getTotal() );
+        assertEquals( 5.5, saleA.getTotal() );
+
     }
 
     public void testMakePayment() {
+
+        saleA.makePayment( 6.0 );
         
-        saleA.addProduct( 111111, 2 );
-        
-        saleA.makePayment( 2.0 );
-        
-        assertEquals( 1.1, saleA.getBalance() );
+        assertEquals( 0.5, saleA.getBalance() );
         
     }
 
@@ -78,16 +74,5 @@ public class SaleTest extends TestCase {
         fail("Not yet implemented");
     }
 */
-    public void testGetElementAt() {
-        
-        saleA.addProduct( 111111, 2 );
-        
-        //assertEquals( productSpecA, saleA.getElementAt(1) );
-    }
-
-    public void testGetSize() {
-        
-        assertEquals( 0, saleA.getSize() );
-    }
 
 }

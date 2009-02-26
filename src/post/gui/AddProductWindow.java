@@ -15,7 +15,7 @@ import post.models.*;
 import post.recordtypes.*;
 import post.gui.SpringUtilities;
 
-public class AddProductWindow extends JFrame implements ActionListener {
+public class AddProductWindow extends Window{
 
 	//UPC
 	private JSpinner upcSpinner = new JSpinner( new SpinnerNumberModel() );
@@ -33,7 +33,7 @@ public class AddProductWindow extends JFrame implements ActionListener {
 	protected AddProductWindow(){
 		
 		//Set the title
-		super("Add Product");
+		this.setTitle("Add Product");
 		
 		Container pane = new JPanel();
 		SpringLayout layout = new SpringLayout();
@@ -65,6 +65,16 @@ public class AddProductWindow extends JFrame implements ActionListener {
 	}
 	
 	/**
+	*	Clear all the fields in the window
+	*
+	*/
+	private void clearFields(){
+		upcSpinner.setValue( 0 );
+		priceSpinner.setValue( 0.0);
+		descriptionArea.setText("");
+	}
+	
+	/**
 	*	
 	*/
     public void actionPerformed(ActionEvent e) {
@@ -84,16 +94,14 @@ public class AddProductWindow extends JFrame implements ActionListener {
         	
         	System.out.println("Added " + descriptionArea.getText() );
         	
+        	this.clearFields();
         	this.close();        	
         }
         else if( e.getActionCommand() == "cancel" ){
        		//Close the window
+       		this.clearFields();
        		this.close();
         }
 
     }
-	
-	public void close(){
-		this.processWindowEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
-	}
 }

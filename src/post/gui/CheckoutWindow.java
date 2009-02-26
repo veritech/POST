@@ -5,11 +5,11 @@ import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 import post.models.*;
+import post.controllers.*;
 
 
-public class CheckoutWindow extends JFrame implements ActionListener {
+public class CheckoutWindow extends Window{
     
-    //JSpinner subtotal = new JSpinner( new SpinnerNumberModel() );
     JSpinner cashTendered = new JSpinner( new SpinnerNumberModel(0.0,0.0,1000.0,0.1) );
     JButton confirmBtn = new JButton("Confirm");
     
@@ -43,12 +43,33 @@ public class CheckoutWindow extends JFrame implements ActionListener {
 			
 			sale.makePayment( (Double) cashTendered.getValue() );
 			
-			this.close();
+			//This code should be moved from the UI into a controller class, ideally store
+			if( sale.getBalance() >= 0 ){
+				
+				Store.getInstance().endSale();
+				
+				//Not enough to complete tranasction
+				JOptionPane.showMessageDialog( this, 
+				"Current sale completed",
+				"Sale Complete",
+				JOptionPane.INFORMATION_MESSAGE
+				);
+				
+				this.close();
+			}else{
+				
+				//Not enough to complete tranasction
+				JOptionPane.showMessageDialog( this, 
+				"This payment is not large enough to complete the transaction",
+				"Insufficient Payment",
+				JOptionPane.WARNING_MESSAGE
+				);
+			}
+			
+			
 		}
 
     }
 
-	public void close(){
-		this.processWindowEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
-	}
+
 }

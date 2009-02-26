@@ -3,7 +3,7 @@ package post.gui;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class CashierLoginWindow extends JFrame implements ActionListener{
+public class CashierLoginWindow extends Window{
     
     JPasswordField loginBox = new JPasswordField();
     JButton loginBtn = new JButton("Login");
@@ -34,8 +34,4 @@ public class CashierLoginWindow extends JFrame implements ActionListener{
     		this.close();
     	}
     }
-    
-	public void close(){
-		this.processWindowEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
-	}
 }

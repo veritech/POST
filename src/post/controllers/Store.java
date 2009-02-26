@@ -9,7 +9,10 @@ import post.models.*;
 
 public class Store extends Controller
 {
-            
+    
+    //Singleton instance of store
+    private static Store instance;
+    
     //The Below variables use a manager to load a singleton instance
     //Product catalog Model
     private ProductCatalog productCatalog;
@@ -23,8 +26,9 @@ public class Store extends Controller
 	*
 	*	Public constructor
 	*/
-	public Store(){
-		this.load();
+	private Store(){
+		 productCatalog = (ProductCatalog) ModelManager.getInstance( ModelManager.PRODUCT_CATALOG );
+
 	}
 
 	/**
@@ -84,6 +88,21 @@ public class Store extends Controller
     	return retVal;
     }
     
+    /**
+    *	Get instance 
+    *
+    *
+    */
+    public static Store getInstance(){
+    
+    	if( instance == null ){
+    		instance = new Store();
+    	}
+    	
+    	return instance;
+    }
+    
+    
     //Serialization methods
     /**
     *	Save method
@@ -92,10 +111,4 @@ public class Store extends Controller
     	ModelManager.save( ModelManager.PRODUCT_CATALOG );
     }
     
-    /**
-    *	Load method
-    */
-    public void load(){
-    	productCatalog = (ProductCatalog) ModelManager.getInstance( ModelManager.PRODUCT_CATALOG );
-    }
 }

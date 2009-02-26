@@ -16,7 +16,7 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	/**
 	*	Store controller
 	*/
-	private Store storeController = new Store();
+	private Store storeController = Store.getInstance();
 	
 	/**
 	* MainWindow Reference
@@ -44,8 +44,8 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	*	Sale Button action
 	*/
 	public void saleBtnAction(){
-		System.out.println("Pressed Sale");
-		//TODO Respond to Sale button action
+
+		WindowManager.getInstance( WindowManager.CHECKOUT ).setVisible( true );
 	}
 	
 	/**
@@ -53,6 +53,8 @@ public class UIController extends Controller implements ActionListener, WindowLi
 	*/
 	public void logBtnAction(){
 		System.out.println("Pressed log");
+		
+		WindowManager.getInstance( WindowManager.SALES_LOG ).setVisible( true );
 		//TODO Log Button Action
 	}
 	
@@ -60,11 +62,7 @@ public class UIController extends Controller implements ActionListener, WindowLi
 		//TODO Save Product Catalog
 		storeController.save();
 	}
-	
-	public void loadProductCatalog(){
-		//TODO Load Product Catalog
-		storeController.load();
-	}
+
 	
 	/**
 	*	Events Action controller method
@@ -74,9 +72,6 @@ public class UIController extends Controller implements ActionListener, WindowLi
 		
         if( e.getActionCommand().equals("sale") ){
         	this.saleBtnAction();
-        	
-        	WindowManager.getInstance( WindowManager.CHECKOUT ).setVisible( true );
-        	
         }
         else if( e.getActionCommand().equals("log") ){
         	this.logBtnAction();
@@ -84,10 +79,6 @@ public class UIController extends Controller implements ActionListener, WindowLi
         else if( e.getActionCommand().equals("add") ){
 			//TODO Respond to Add button action
 			this.addBtnAction();
-        }
-        else if( e.getActionCommand().equals("comboBox") ){
-        	System.out.println("Combobox");
-        	//TODO Respond to combo box action
         }
         //Deal with menu actions
         else if( e.getActionCommand().equals("Save") ){
@@ -99,10 +90,12 @@ public class UIController extends Controller implements ActionListener, WindowLi
 
         }
         else if( e.getActionCommand().equals("Remove Product") ){
-        	//TODO Repond to remove Product
+        	
+        	WindowManager.getInstance( WindowManager.REMOVE_PRODUCT ).setVisible( true );
+        	
         }
         else{
-        	System.out.println( "**** Unhandled command ****");
+        	System.out.println( "**** Unhandled UI Action ****");
         	System.out.println( e.getActionCommand() );
         }
 

@@ -6,7 +6,7 @@ package post.recordtypes;
 
 //import post.*;
 
-public class SalesLineItem
+public class SalesLineItem extends AbstractRecord
 {
     private int quantity = 0;
     private ProductSpec productSpec= null;

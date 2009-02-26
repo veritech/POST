@@ -94,7 +94,7 @@ public class MainWindow extends JFrame{
 		this.getContentPane().add( btn, layout);
 		
 		//Log button
-		btn = new JButton("Log");
+		btn = new JButton("Sales Log");
 		
 		btn.setActionCommand("log");
 		

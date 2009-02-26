@@ -5,7 +5,7 @@
 
 package post.recordtypes;
 
-public class Payment 
+public class Payment extends AbstractRecord
 {
     private double amount;
 

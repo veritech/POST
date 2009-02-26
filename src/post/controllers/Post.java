@@ -56,6 +56,7 @@ public class Post implements iTransaction
 	*/
 	public void end(){
 		
+		ModelManager.save( ModelManager.SALES );
 	}
  		
 }

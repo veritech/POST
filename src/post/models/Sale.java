@@ -82,6 +82,8 @@ public class Sale extends Model implements iTransaction
         //payment = new Payment(amount-5);
         //new logic
         payment = new Payment(amount);
+        
+        System.out.println("Payment made balance: " + this.getBalance() );
     }
 
 	/**
@@ -140,6 +142,19 @@ public class Sale extends Model implements iTransaction
    	public void end(){
    		
    		this.isComplete = true;
+   		
+   		//Loop around and begin a new transaction
+   		this.begin();
+   	}
+   	
+   	/**
+   	*	Override the superclass toString method
+   	*
+   	*
+   	*/
+   	public String toString(){
+   		
+   		return "Sale @ " + date.toString();
    	}
    	
 }

@@ -11,7 +11,7 @@ import java.util.*;
 
 import post.recordtypes.*;
 
-public class Sale extends Model implements iTransaction
+public class Sale extends Model implements ITransaction
 {
     //Date of the current transaction
     private Date date;

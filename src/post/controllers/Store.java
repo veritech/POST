@@ -18,8 +18,9 @@ public class Store extends Controller
     private ProductCatalog productCatalog;
 	
 	//Delegate for monitoring transaction, delegate requires a copy of the class 
-	private iTransaction delegate = new Post(this);
+	private Post delegate = new Post(this);
 	
+	//Current sale object
 	private Sale currentSale = (Sale) ModelManager.getInstance( ModelManager.CURRENT_SALE );
 	
 	/**
@@ -51,6 +52,12 @@ public class Store extends Controller
     */
     public void removeItem( int upc ){
    		currentSale.remove( upc );
+    }
+    
+    public void applicationWillBegin(){
+    	
+    	delegate.applicationWillBegin();
+    	
     }
     
     /**

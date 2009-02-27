@@ -41,14 +41,4 @@ public class ProductCatalog extends Model
         
     }
 		
-/*        
-        if(upc == 111119)
-            return new ProductSpec(111119,"Bread",.75);
-        else if (upc == 111120)
-            return new ProductSpec(111120, "Biscuits", .45);
-        else if (upc == 111121)
-            return new ProductSpec(111121, "Anchovies", 1.5);
-        else 
-            return new ProductSpec(111122, "Dog Food", 1.62);
-*/
 }

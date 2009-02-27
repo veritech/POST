@@ -146,7 +146,8 @@ public class UIController extends Controller implements ActionListener, WindowLi
 		//TODO Implement windowIconified
 	}
 	public void windowOpened(WindowEvent e){
-		//TODO Implement windowOpenedcon	
+
+		storeController.applicationWillBegin();
 	}
 	
 	/**

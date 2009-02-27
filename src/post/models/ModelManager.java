@@ -1,6 +1,7 @@
 package post.models;
 
 import java.io.*;
+import post.recordtypes.*;
 
 public class ModelManager {
 	
@@ -8,11 +9,13 @@ public class ModelManager {
 	private static ProductCatalog productCatalogInstance = null;
 	private static Sales salesInstance = null;
 	private static Sale currentSaleInstance = null;
+	private static Users usersInstance = null;
 	
 	//Constants used to select model
 	public static final int SALES = 1;
 	public static final int PRODUCT_CATALOG = 2;
 	public static final int CURRENT_SALE = 3;
+	public static final int USERS = 4;
 	
 	/**
 	*	Hide the constructor from public view
@@ -57,9 +60,20 @@ public class ModelManager {
 				
 				}
 				
-				
 				return currentSaleInstance;
+			
+			case USERS:
 				
+				if( usersInstance == null ){
+					
+					usersInstance = new Users();
+					//For implementation speeds sake, i'll insert sample user data here. Rather than load from file
+					usersInstance.addElement( new User("Jonathan","1987") );
+					
+				}
+				
+				return usersInstance;
+			
 			default:
 				return null;
 		}

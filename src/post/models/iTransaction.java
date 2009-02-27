@@ -1,6 +1,6 @@
 package post.models;
 
-public interface iTransaction {
+public interface ITransaction {
     
     public void willBegin();
     

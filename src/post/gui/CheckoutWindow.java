@@ -45,15 +45,18 @@ public class CheckoutWindow extends Window{
 			
 			//This code should be moved from the UI into a controller class, ideally store
 			if( sale.getBalance() >= 0 ){
-				
-				Store.getInstance().endSale();
+
 				
 				//Not enough to complete tranasction
 				JOptionPane.showMessageDialog( this, 
-				"Current sale completed",
+				//sale.getBalance now contains the change
+				"Current sale completed, Change owed : £" + sale.getBalance(),
 				"Sale Complete",
 				JOptionPane.INFORMATION_MESSAGE
 				);
+				
+				//This must be called after the above, or getBalance is reset
+				Store.getInstance().endSale();
 				
 				this.close();
 			}else{
